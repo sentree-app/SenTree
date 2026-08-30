@@ -305,6 +305,39 @@ p{ margin:0; }
 .accordion__panel p{ padding: 0 4px 22px; color: var(--text-muted); line-height:1.65; font-size:0.95rem; max-width: 620px; }
 
 /* =========================================================
+   PRIVACY POLICY
+   ========================================================= */
+.policy-meta{
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap: 14px;
+  max-width: 760px; margin: 0 auto 28px; padding: 14px 20px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+}
+.policy-meta__badge{
+  font-family: var(--font-mono); font-size: 0.78rem; font-weight:600; color: var(--ink-soft);
+  background: var(--primary-tint); color: var(--primary-dark); padding: 6px 12px; border-radius: 999px;
+}
+.policy-meta__contact{ display:flex; align-items:center; gap:8px; font-size:0.88rem; font-weight:600; color: var(--text-muted); }
+.policy-meta__contact:hover{ color: var(--primary); }
+.policy-intro{
+  max-width: 760px; margin: 0 auto 36px; color: var(--text-muted); font-size: 1rem; line-height:1.7;
+}
+.accordion--policy{ max-width: 760px; }
+.accordion--policy .accordion__trigger{ font-size: 0.98rem; }
+.accordion--policy .accordion__panel p{ max-width: 100%; padding-bottom: 14px; }
+.accordion--policy .accordion__panel p:last-child{ padding-bottom: 22px; }
+.accordion--policy .accordion__panel a{ color: var(--primary); font-weight:600; }
+.accordion--policy .accordion__panel a:hover{ text-decoration: underline; }
+.policy-list{ padding: 0 4px 4px !important; }
+.policy-list li{
+  position:relative; padding-left: 20px; color: var(--text-muted); font-size:0.95rem; line-height:1.6; margin-bottom: 10px; max-width: 620px;
+}
+.policy-list li::before{ content:''; position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background: var(--verify); }
+.policy-callout{
+  margin: 4px 4px 18px !important; padding: 14px 16px !important; background: var(--verify-tint);
+  border-left: 3px solid var(--verify); border-radius: 0 10px 10px 0; font-size: 0.9rem !important; color: var(--ink-soft) !important;
+}
+
+/* =========================================================
    CONTACT
    ========================================================= */
 .contact-panel{
@@ -400,6 +433,7 @@ p{ margin:0; }
   .how-flow{ flex-direction:column; align-items:flex-start; }
   .how-flow__arrow{ display:none; }
   .section{ padding: 70px 0; }
+  .policy-meta{ flex-direction:column; align-items:flex-start; }
 }
 
 @media (max-width: 520px){
