@@ -73,37 +73,41 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach((el) => el.classList.add('is-visible'));
   }
 
-  /* ---------- FAQ accordion ---------- */
-  const accordionItems = document.querySelectorAll('.accordion__item');
+  /* ---------- Accordions (FAQ + Privacy Policy) ---------- */
+  // Scoped per .accordion container so opening an item in one accordion
+  // (e.g. Privacy Policy) doesn't collapse an open item in another (e.g. FAQ).
+  document.querySelectorAll('.accordion').forEach((accordion) => {
+    const accordionItems = accordion.querySelectorAll('.accordion__item');
 
-  accordionItems.forEach((item) => {
-    const trigger = item.querySelector('.accordion__trigger');
-    const panel = item.querySelector('.accordion__panel');
-    if (!trigger || !panel) return;
+    accordionItems.forEach((item) => {
+      const trigger = item.querySelector('.accordion__trigger');
+      const panel = item.querySelector('.accordion__panel');
+      if (!trigger || !panel) return;
 
-    panel.style.maxHeight = '0px';
+      panel.style.maxHeight = '0px';
 
-    trigger.addEventListener('click', () => {
-      const isOpen = item.classList.contains('is-open');
+      trigger.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
 
-      // Close all other items (single-open accordion)
-      accordionItems.forEach((other) => {
-        if (other !== item) {
-          other.classList.remove('is-open');
-          other.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');
-          other.querySelector('.accordion__panel').style.maxHeight = '0px';
+        // Close all other items within this same accordion (single-open)
+        accordionItems.forEach((other) => {
+          if (other !== item) {
+            other.classList.remove('is-open');
+            other.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');
+            other.querySelector('.accordion__panel').style.maxHeight = '0px';
+          }
+        });
+
+        if (isOpen) {
+          item.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
+          panel.style.maxHeight = '0px';
+        } else {
+          item.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
         }
       });
-
-      if (isOpen) {
-        item.classList.remove('is-open');
-        trigger.setAttribute('aria-expanded', 'false');
-        panel.style.maxHeight = '0px';
-      } else {
-        item.classList.add('is-open');
-        trigger.setAttribute('aria-expanded', 'true');
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-      }
     });
   });
 
